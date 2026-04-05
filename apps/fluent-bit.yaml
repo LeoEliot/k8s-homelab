@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: logging
+    namespace: monitoring
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -19,7 +19,7 @@ spec:
             [OUTPUT]
                 name                   loki
                 match                  *
-                host                   loki-gateway.logging.svc.cluster.local
+                host                   loki-gateway.monitoring.svc.cluster.local
                 port                   80
                 labels                 job=fluentbit
                 auto_kubernetes_labels on
