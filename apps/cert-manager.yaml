@@ -14,11 +14,6 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
-    helm:
-      releaseName: cert-manager
-      values: |
-        crds:
-          enabled: true
   syncPolicy:
     automated:
       prune: true
