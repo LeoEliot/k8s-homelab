@@ -27,7 +27,7 @@ spec:
     server: https://kubernetes.default.svc
   project: homelab
   source:
-    path: manifests/*.yaml
+    path: manifests/
     repoURL: https://github.com/LeoEliot/k8s-homelab.git
     targetRevision: HEAD
   syncPolicy:
