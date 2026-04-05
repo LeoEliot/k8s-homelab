@@ -1,0 +1,27 @@
+apiVersion: apps.gitlab.com/v1beta1
+kind: GitLab
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  chart:
+    version: 9.10.1
+    values:
+      global:
+        hosts:
+          domain: malef.lan
+        ingress:
+          configureCertmanager: false
+          provider: nginx
+          class: nginx
+          annotations:
+          cert-manager.io/cluster-issuer: vault-issuer
+        certificates:
+          customCAs:
+            - secret: ca-cert
+      installCertmanager: false
+      prometheus:
+        install: false
+      nginx-ingerss:
+        enabled: false
+      
