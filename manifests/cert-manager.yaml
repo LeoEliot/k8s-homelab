@@ -22,7 +22,7 @@ spec:
     helm:
       values: |
         crds:
-          enabled: "true"
+          enabled: "false"
         prometheus:
           enabled: "true"
           servicemonitor:
@@ -32,8 +32,6 @@ spec:
       allowEmpty: true
       prune: true
       selfHeal: true
-    syncOptions:
-      - ServerSideApply=true
 ---
 apiVersion: v1
 kind: Secret
