@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://charts.gitlab.io/
-    targetRevision: 1.20.1
+    targetRevision: 2.10.1
     chart: gitlab-operator
   destination:
     server: https://kubernetes.default.svc
