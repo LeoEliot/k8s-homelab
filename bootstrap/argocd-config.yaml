@@ -35,7 +35,7 @@ spec:
     spec:
       project: homelab
       source:
-        repoURL: https://github.com/crkochan/argocd-homelab.git
+        repoURL: https://github.com/LeoEliot/k8s-homelab.git
         path: '{{ .path.path }}'
         targetRevision: HEAD
       destination:
