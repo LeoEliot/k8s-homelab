@@ -48,7 +48,7 @@ global:
   ## https://docs.gitlab.com/charts/installation/deployment#deploy-the-community-edition
   edition: ce
   ## https://docs.gitlab.com/charts/charts/globals#gitlab-version
-  gitlabVersion: "18.10.1"
+  gitlabVersion: "18.9.3"
   ## https://docs.gitlab.com/charts/charts/globals#application-resource
   application:
     create: false
