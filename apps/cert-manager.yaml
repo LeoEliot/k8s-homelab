@@ -11,15 +11,15 @@ spec:
     repoURL: https://charts.jetstack.io/
     targetRevision: 1.20.1
     chart: cert-manager
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: cert-manager
     helm:
       values: |
         prometheus: 
           enabled: true
           servicemonitor:
             enabled: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
   syncPolicy:
     automated:
       prune: true
