@@ -22,11 +22,11 @@ spec:
     helm:
       values: |
         crds:
-          enabled: "false"
+          enabled: "false
         prometheus:
-          enabled: "true"
+          enabled: true
           servicemonitor:
-            enabled: "true"
+            enabled: true
   syncPolicy:
     automated:
       allowEmpty: true
