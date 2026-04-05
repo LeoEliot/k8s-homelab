@@ -14,6 +14,12 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
+    helm:
+      values: |
+        prometheus: 
+          enabled: true
+          servicemonitor:
+            enabled: true
   syncPolicy:
     automated:
       prune: true
