@@ -22,6 +22,8 @@ spec:
   syncPolicy:
     syncOptions:
       - ClientSideApplyMigration=false
+      - CreateNamespace=true
     automated: 
       prune: true
       selfHeal: true
+    
