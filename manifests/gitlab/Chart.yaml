@@ -1,0 +1,9 @@
+apiVersion: v2
+type: application
+description: GitLab Helm Chart
+version: 0.0.0
+name: gitlab
+dependencies:
+  - name: gitlab
+    version: 9.10.1
+    repository: https://charts.gitlab.io/
