@@ -19,14 +19,6 @@ spec:
     chart: cert-manager
     repoURL: https://charts.jetstack.io
     targetRevision: v1.20.1
-    helm:
-      values: |
-        crds:
-          enabled: false
-        prometheus:
-          enabled: true
-          servicemonitor:
-            enabled: true
   syncPolicy:
     automated:
       allowEmpty: true
