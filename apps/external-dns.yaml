@@ -30,7 +30,6 @@ spec:
           - service
           - crd
         extraArgs:
-          - "--annotation-filter=external-dns.custom/type in (public)"
           - "--rfc2136-host=192.168.1.10"
           - "--rfc2136-port=53"
           - "--rfc2136-zone=malef.lan"
