@@ -20,7 +20,7 @@ spec:
     helm:
       valuesObject:
         provider:
-          name: rfc-2336
+          name: rfc-2136
         fullnameOverride: external-dns
         policy: sync
         registry: txt
