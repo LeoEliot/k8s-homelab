@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitlab-operator
+  namespace: argocd
+  annotations:
+    argocd.argorpoj.io/sync-wave: "-1"
+spec:
+  project: default
+  source:
+    repoURL: https://charts.gitlab.io/
+    targetRevision: 1.20.1
+    chart: gitlab-operator
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitlab-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
