@@ -17,33 +17,21 @@ spec:
       kind: "*"
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
-  name: homelab-manifest
+  name: root-app
   namespace: argocd
 spec:
-  goTemplate: true
-  generators:
-    - git:
-        repoURL: https://github.com/LeoEliot/k8s-homelab.git
-        revision: HEAD
-        files:
-          - path: manifest/*.yaml
-  template:
-    metadata:
-      name: '{{ normalize .path.filename }}'
-    spec:
-      project: homelab
-      source:
-        repoURL: https://github.com/LeoEliot/k8s-homelab.git
-        path: '{{ .path.path }}'
-        targetRevision: HEAD
-      destination:
-        server: "https://kubernetes.default.svc"
-      syncPolicy:
-        syncOptions:
-          - CreateNamespace=false
-        automated:
-          prune: true
-          selfHeal: true
-          allowEmpty: true
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: homelab
+  source:
+    path: manifests/*.yaml
+    repoURL: https://github.com/LeoEliot/k8s-homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
