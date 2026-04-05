@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  annotations:
+    argocd.argorpoj.io/sync-wave: "-15"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LeoEliot/k8s-homelab.git
+    targetRevision: main
+    path: manifests/metallb
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
