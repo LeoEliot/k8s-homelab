@@ -21,6 +21,7 @@ spec:
             retention: 1d
   syncPolicy:
     syncOptions:
-      - ServerSideApply=true
       - ClientSideApplyMigration=false
-    automated: {}
+    automated: 
+      prune: true
+      selfHeal: true
