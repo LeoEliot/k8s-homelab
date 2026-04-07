@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: komga
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: komga
+  namespace: argocd
+  annotations:
+    argocd.argorpoj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LeoEliot/k8s-homelab.git
+    targetRevision: main
+    path: manifests/komga
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: komga
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
