@@ -115,7 +115,7 @@ spec:
               service:
                 name: komga
                 port:
-                  number: 80
+                  number: 8080
   tls:
     - hosts: 
       - komga.malef.lan
