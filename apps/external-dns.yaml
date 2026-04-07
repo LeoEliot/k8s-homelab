@@ -8,6 +8,8 @@ kind: Application
 metadata:
   name: external-dns
   namespace: argocd
+  annotations:
+    argocd.argorpoj.io/sync-wave: "-1"
 spec:
   destination:
     namespace: external-dns

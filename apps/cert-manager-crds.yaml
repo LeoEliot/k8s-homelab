@@ -4,7 +4,7 @@ metadata:
   name: cert-manager-crds
   namespace: argocd
   annotations:
-    argocd.argorpoj.io/sync-wave: "-15"
+    argocd.argorpoj.io/sync-wave: "-5"
 spec:
   project: default
   source:

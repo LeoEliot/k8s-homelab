@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: ingresses
   namespace: argocd
+  annotations:
+    argocd.argorpoj.io/sync-wave: "1"
 spec:
   project: default
   source:
