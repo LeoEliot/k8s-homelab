@@ -76,9 +76,9 @@ spec:
           persistentVolumeClaim:
             claimName: komga-data
         - name: media
-          nfs:
-            server: "192.168.1.11"
-            path: /var/nfs
+          hostPath:
+            path: /home/malef/media/books
+            type: Directory
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
