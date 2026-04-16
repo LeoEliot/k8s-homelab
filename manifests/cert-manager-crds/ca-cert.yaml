@@ -3,12 +3,7 @@ kind: Secret
 metadata:
   name: ca-cert
   namespace: cert-manager
-  annotations:
-      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "gitlab"
-      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "gitlab"
-type: Opaque
+type: kubernetes.io/tls
 stringData:
   ca.crt: |
     -----BEGIN CERTIFICATE-----

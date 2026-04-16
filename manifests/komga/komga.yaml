@@ -96,39 +96,30 @@ spec:
       storage: "2Gi"
   storageClassName: "local-path"
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: komga-ingress
-  namespace: komga
-  annotations:
-    cert-manager.io/cluster-issuer: ca-issuer
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: komga.malef.lan
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: komga
-                port:
-                  number: 8080
-  tls:
-    - hosts: 
-      - komga.malef.lan
-      secretName: komga-server-tls
----
-apiVersion: externaldns.k8s.io/v1alpha1
-kind: DNSEndpoint
-metadata:
-  name: komga-dns
-  namespace: komga
-spec:
-  endpoints:
-    - dnsName: komga.malef.lan
-      recordType: A
-      targets:
-        - 192.168.1.15
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: komga
+#   namespace: komga
+# spec:
+#   hostnames:
+#     - "komga.malef.lan"
+#   parentRefs:
+#     - name: envoy-gw
+#       namespace: gateway
+#   rules:
+#     - backendRefs:
+#         - name: komga
+#           port: 8080
+# ---
+# apiVersion: externaldns.k8s.io/v1alpha1
+# kind: DNSEndpoint
+# metadata:
+#   name: komga-dns
+#   namespace: komga
+# spec:
+#   endpoints:
+#     - dnsName: komga.malef.lan
+#       recordType: CNAME
+#       targets:
+#         - gw.malef.lan
