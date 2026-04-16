@@ -11,10 +11,10 @@ spec:
     repoURL: https://kubernetes.github.io/ingress-nginx
     targetRevision: 4.15.1
     chart: ingress-nginx
-    # helm:
-    #   values: |
-    #     tcp:
-    #       "22": "gitea/gitea-ssh:22"
+    helm:
+      values: |
+        tcp:
+          "22": "gitea/gitea-ssh:22"
   destination:
     server: https://kubernetes.default.svc
     namespace: ingress-nginx
