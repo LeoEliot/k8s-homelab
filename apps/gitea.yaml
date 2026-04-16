@@ -30,7 +30,7 @@ spec:
           className: "nginx"
           pathType: Prefix
           annotations: 
-            cert-manage.io/cluster-issuer: "ca-issuer"
+            cert-manager.io/cluster-issuer: "ca-issuer"
           hosts:
             - host: git.malef.lan
               paths:
