@@ -1,22 +1,80 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: gitea
-#   namespace: argocd
-#   annotations:
-#     argocd.argorpoj.io/sync-wave: "1"
-# spec:
-#   project: default
-#   source:
-#     repoURL: https://github.com/LeoEliot/k8s-homelab.git
-#     targetRevision: main
-#     path: manifests/gitea
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: gitea
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  endpoints:
+    - dnsName: gitea.malef.lan
+      recordType: A
+      targets:
+        - 192.168.1.15
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd
+  annotations:
+    argocd.argorpoj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://dl.gitea.com/charts/
+    targetRevision: 12.5.0
+    chart: gitea
+    helm:
+      values: |
+        ingress:
+          enabled: true
+          className: "nginx"
+          pathType: Prefix
+          annotations: 
+            cert-manage.io/cluster-issuer: "ca-issuer"
+          hosts:
+            - host: git.malef.lan
+              paths:
+                - path: /
+          tls: 
+          - secretName: gitea-ingress-tls
+            hosts:
+              - git.malef.lan
+        persistence:
+          enabled: true
+          create: true
+          mount: true
+          claimName: gitea-shared-storage
+          size: 30Gi
+          accessModes:
+            - ReadWriteOnce
+          labels: {}
+          storageClass: local-path
+          subPath:
+          volumeName: ""
+          annotations:
+            helm.sh/resource-policy: keep
+        valkey-cluster:
+          enabled: false
+        valkey:
+          enabled: true
+        postgresql:
+          enabled: true
+        postgresql-ha:
+          enabled: false
+        gitea:
+          admin:
+            existingSecret:
+            username: malef
+            password: ViVa1994
+            email: "vakfuder@gmail.com"
+            passwordMode: keepUpdated
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitea
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
